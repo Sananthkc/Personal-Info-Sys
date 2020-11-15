@@ -40,7 +40,7 @@ public class home extends AppCompatActivity {
     FirebaseFirestore fStore;
     String userId;
     Button resendCode;
-    Button resetPassLocal, changeProfileImage;
+    Button resetPassLocal, changeProfileImage, nextpage;
     FirebaseUser user;
     ImageView profileImage;
     StorageReference storageReference;
@@ -50,6 +50,7 @@ public class home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        nextpage = findViewById(R.id.nextpage);
         phone = findViewById(R.id.profilePhone);
         fullName = findViewById(R.id.profileName);
         email = findViewById(R.id.profileEmail);
@@ -81,6 +82,14 @@ public class home extends AppCompatActivity {
         if (!user.isEmailVerified()) {
             verifyMsg.setVisibility(View.VISIBLE);
             resendCode.setVisibility(View.VISIBLE);
+
+            nextpage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(home.this, home2.class);
+                    startActivity(intent);
+                }
+            });
 
             resendCode.setOnClickListener(new View.OnClickListener() {
                 @Override
