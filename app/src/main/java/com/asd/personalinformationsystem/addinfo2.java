@@ -48,8 +48,8 @@ public class addinfo2 extends AppCompatActivity {
         private void Add(String titlesend, String descsend)
         {
 
-            String id=mDatabase.push().getKey();
-            Listdata listdata = new Listdata(id,titlesend, descsend);
+            String id = mDatabase.push().getKey();
+            Listdata listdata = new Listdata(id, titlesend, descsend);
             /// new
             userID = fAuth.getCurrentUser().getUid();
             DocumentReference documentReference = fStore.collection("users").document(userID);
@@ -59,10 +59,11 @@ public class addinfo2 extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             Toast.makeText(addinfo2.this, "Event Added", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),home2.class));
+                            startActivity(new Intent(getApplicationContext(), home2.class));
                         }
                     });
         }
+
     @Override
     public void onBackPressed() {
         startActivity(new Intent(getApplicationContext(), home2.class));
