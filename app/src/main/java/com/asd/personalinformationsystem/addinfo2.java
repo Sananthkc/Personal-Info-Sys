@@ -33,6 +33,7 @@ public class addinfo2 extends AppCompatActivity {
         title=findViewById(R.id.title);
         desc=findViewById(R.id.desc);
         mDatabase = FirebaseDatabase.getInstance().getReference();
+    }
 
         public void AddEvent(View view) {
             titlesend=title.getText().toString();
@@ -51,8 +52,8 @@ public class addinfo2 extends AppCompatActivity {
             String id = mDatabase.push().getKey();
             Listdata listdata = new Listdata(id, titlesend, descsend);
             /// new
-            userID = fAuth.getCurrentUser().getUid();
-            DocumentReference documentReference = fStore.collection("users").document(userID);
+          /*  userID = fAuth.getCurrentUser().getUid();
+            DocumentReference documentReference = fStore.collection("users").document(userID);*/
             ///
             mDatabase.child("Events").child(id).setValue(listdata).
                     addOnCompleteListener(new OnCompleteListener<Void>() {
