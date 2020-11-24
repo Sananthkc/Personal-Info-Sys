@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1039303720291",
+    "firebase_url": "https://personalinformationsyste-829e4.firebaseio.com",
+    "project_id": "personalinformationsyste-829e4",
+    "storage_bucket": "personalinformationsyste-829e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1039303720291:android:0ed7452bc8a9e81d256756",
+        "android_client_info": {
+          "package_name": "com.asd.personalinformationsystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1039303720291-bqfajffkt31hjole1kak5fho4rh6s2qu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAS0CEA43DlEjG2E2cIMIL3TuLmG8hdv4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1039303720291-bqfajffkt31hjole1kak5fho4rh6s2qu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

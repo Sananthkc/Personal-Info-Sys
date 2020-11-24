@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,6 +25,7 @@ public class home2 extends AppCompatActivity {
     RecyclerView recyclerView;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    Button new_button;
     List<Listdata> list = new ArrayList<>();
     Context context;
 
@@ -30,6 +33,7 @@ public class home2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home2);
+        new_button = findViewById(R.id.new_button);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         recyclerView = findViewById(R.id.recyclerview);
@@ -60,6 +64,13 @@ public class home2 extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        new_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), addinfo2.class));
             }
         });
 
