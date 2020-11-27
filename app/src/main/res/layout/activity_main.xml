@@ -27,6 +27,7 @@
         android:layout_marginHorizontal="30sp"
         android:ems="10"
         android:hint="Enter Email"
+        android:textColorHint="#F5F4F8"
         android:inputType="textEmailAddress" />
 
     <EditText
@@ -36,6 +37,7 @@
         android:layout_margin="30sp"
         android:ems="10"
         android:hint="Enter Password"
+        android:textColorHint="#F5F4F8"
         android:inputType="textPassword" />
 
     <Button
@@ -54,6 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Forgot Password?"
+        android:textColor="#000000"
         android:textAlignment="center"
         tools:visibility="visible" />
 

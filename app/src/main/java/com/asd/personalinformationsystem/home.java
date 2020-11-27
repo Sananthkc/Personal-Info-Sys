@@ -79,17 +79,19 @@ public class home extends AppCompatActivity {
         userId = fAuth.getCurrentUser().getUid();
         user = fAuth.getCurrentUser();
 
+        nextpage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(home.this, home2.class);
+                startActivity(intent);
+            }
+        });
+
         if (!user.isEmailVerified()) {
             verifyMsg.setVisibility(View.VISIBLE);
             resendCode.setVisibility(View.VISIBLE);
 
-            nextpage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(home.this, home2.class);
-                    startActivity(intent);
-                }
-            });
+
 
             resendCode.setOnClickListener(new View.OnClickListener() {
                 @Override
