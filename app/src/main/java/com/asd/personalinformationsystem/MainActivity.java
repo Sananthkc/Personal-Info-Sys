@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String email = mEmail.getText().toString().trim();
+                final String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
 
                 if(TextUtils.isEmpty(email)){
@@ -75,14 +76,25 @@ public class MainActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 // authenticate the user
 
-                fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(MainActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
+                        if (task.isSuccessful()) {
 
-                            Intent i = new Intent(MainActivity.this , home.class);
-                            startActivity(i);
+                            String adminEmail1 = "sananth1010@gmail.com";
+                            if (email.equals(adminEmail1)) {
+                                Log.d("email","email="+email);
+                                Intent i = new Intent(MainActivity.this, AdminHomeActivity.class);
+                                startActivity(i);
+
+                            }else {
+
+
+                                Toast.makeText(MainActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
+
+                                Intent i = new Intent(MainActivity.this, home.class);
+                                startActivity(i);
+                            }
 
 
 

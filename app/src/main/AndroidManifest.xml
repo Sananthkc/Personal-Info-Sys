@@ -10,8 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionbar">
         <activity android:name=".AdminHomeActivity"></activity>
-        <activity android:name=".addinfo2" />
-        <activity android:name=".home2" />
         <activity android:name=".Add_info" />
         <activity android:name=".home" />
         <activity android:name=".Registration" />
