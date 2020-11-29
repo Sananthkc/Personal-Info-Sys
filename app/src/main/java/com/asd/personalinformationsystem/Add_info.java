@@ -15,10 +15,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -38,7 +42,10 @@ public class Add_info extends AppCompatActivity {
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     FirebaseUser user;
+   // FirebaseDatabase rootNode;
     StorageReference storageReference;
+   // DatabaseReference matabade;
+  //  DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +68,7 @@ public class Add_info extends AppCompatActivity {
         profilePhone = findViewById(R.id.profilePhoneNo);
         profileImageView = findViewById(R.id.profileImageView);
         profileOccupation = findViewById(R.id.profileOccupation);
+     //   mDatabase = FirebaseDatabase.getInstance().getReference();
 
         saveBtn = findViewById(R.id.saveProfileInfo);
 
@@ -80,6 +88,21 @@ public class Add_info extends AppCompatActivity {
             }
         });
 
+      /*  private void Add(String email, String profileFullName, String profilePhone, String profileOccupation, String user)
+        {
+            String id=mDatabase.push().getKey();
+            Listdata listdata = new Listdata(id,email, profileFullName,profilePhone,profileOccupation);
+            mDatabase.child("Users").child(id).setValue(listdata).
+                    addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(Add_info.this, "Event Added", Toast.LENGTH_SHORT).show();
+                        //    startActivity(new Intent(getApplicationContext(),EventHomeScreen.class));
+                        }
+                    });
+
+        }
+*/
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,6 +121,7 @@ public class Add_info extends AppCompatActivity {
                         edited.put("fName",profileFullName.getText().toString());
                         edited.put("phone",profilePhone.getText().toString());
                         edited.put("occupation",profileOccupation.getText().toString());
+                       // Add(email,profileFullName,profilePhone,profileOccupation,user);
                         docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {

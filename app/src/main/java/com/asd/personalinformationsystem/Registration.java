@@ -21,6 +21,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -36,6 +38,8 @@ public class Registration extends AppCompatActivity {
     public static final String TAG = "TAG";
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
+    FirebaseDatabase rootNode;
+    DatabaseReference mDatabase;
     String userID;
     ProgressBar progressBar;
 
@@ -50,12 +54,23 @@ public class Registration extends AppCompatActivity {
 
 
 
+
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 validate();
                 //Upload the data to the database
+                rootNode = FirebaseDatabase.getInstance();
+                mDatabase = rootNode.getReference("Users");
+                String id=mDatabase.push().getKey();
 
+                String name = userName.getText().toString();
+                String email = userEmail.getText().toString();
+                String phone = userPhone.getText().toString();
+                String occ = userOccupation.getText().toString();
+
+                UserHelperClass helperClass = new UserHelperClass(name, id, email, phone, occ);
+                mDatabase.child(phone).setValue(helperClass);
 
             }
         });
@@ -138,6 +153,7 @@ public class Registration extends AppCompatActivity {
                     user.put("email", mEmail);
                     user.put("phone", mPhone);
                     user.put("occupation",mOccupation);
+                    user.put("id", userID);
                     documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {

@@ -2,9 +2,9 @@ package com.asd.personalinformationsystem;
 
 public class Listdata {
 
-    public String getTitle() {
-        return title;
-    }
+   // public String getEmail() {
+     //   return email;
+   // }
 
     public void setTitle(String title) {
         this.title = title;
