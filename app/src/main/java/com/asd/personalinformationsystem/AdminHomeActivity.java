@@ -3,6 +3,8 @@ package com.asd.personalinformationsystem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -26,7 +28,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.auth.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,7 @@ public class AdminHomeActivity extends AppCompatActivity {
     private TextView txtFullName, txtEmail, txtPhone, txtOccupation;
     private Button  btn_search,btnLogout;
     private EditText editTxtName;
+    private NoteViewModel viewModel;
 
 
 
@@ -46,6 +48,15 @@ public class AdminHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
 
+        viewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(NoteViewModel.class);
+
+        //TODO: After getting the phone number from the ADMIN search for the user
+//        viewModel.getAllUsers(phoneNumber).observe(this, new Observer<List<User>>() {
+//            @Override
+//            public void onChanged(List<User> users) {
+//
+//            }
+//        });
 
     }
 }

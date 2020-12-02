@@ -9,7 +9,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = Note.class, version = 1)
+@Database(entities = User.class, version = 1)
 public abstract class NoteDatabase extends RoomDatabase {
 
     private static  NoteDatabase instance;
@@ -41,9 +41,9 @@ public abstract class NoteDatabase extends RoomDatabase {
         }
         @Override
         protected Void doInBackground(Void... voids) {
-            noteDao.insert(new Note("phone1","name1","email1","occ1"));
-            noteDao.insert(new Note("phone2","name2","email2","occ2"));
-            noteDao.insert(new Note("phone3","name3","email3","occ3"));
+            noteDao.insert(new User("phone1","name1","email1","occ1"));
+            noteDao.insert(new User("phone2","name2","email2","occ2"));
+            noteDao.insert(new User("phone3","name3","email3","occ3"));
             return null;
         }
     }

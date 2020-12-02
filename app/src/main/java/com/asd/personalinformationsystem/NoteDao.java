@@ -13,19 +13,13 @@ import java.util.List;
 public interface NoteDao {
 
     @Insert
-    void insert( Note note);
+    void insert(User user);
 
     @Update
-    void update(Note note);
+    void update(User user);
 
-    @Delete
-    void delete(Note note);
-
-    @Query("DELETE FROM note_table")
-    void deleteAllNotes();
-
-    @Query("SELECT * FROM note_table ORDER BY  DESC")
-    LiveData<List<Note>> getAllNotes();
+    @Query("SELECT * FROM User where phone = :phone")
+    LiveData<List<User>> getAllUsers(String phone);
 
 
 }

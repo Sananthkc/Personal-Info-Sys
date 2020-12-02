@@ -2,6 +2,7 @@ package com.asd.personalinformationsystem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -46,6 +47,7 @@ public class Add_info extends AppCompatActivity {
     StorageReference storageReference;
    // DatabaseReference matabade;
   //  DatabaseReference mDatabase;
+    private NoteViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,8 @@ public class Add_info extends AppCompatActivity {
      //   mDatabase = FirebaseDatabase.getInstance().getReference();
 
         saveBtn = findViewById(R.id.saveProfileInfo);
+
+        viewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(NoteViewModel.class);
 
         StorageReference profileRef = storageReference.child("users/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -106,6 +110,12 @@ public class Add_info extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //TODO: Update the user info in the User table
+                //Get the details regarding the user including the primary key (phone number) and create an instance of User class
+                //This primary key (phone number) is used to check for the entry to be updated
+                //viewModel.update(new User());
+
                 if(profileFullName.getText().toString().isEmpty() || profileEmail.getText().toString().isEmpty() || profilePhone.getText().toString().isEmpty()){
                     Toast.makeText(Add_info.this, "One or Many fields are empty.", Toast.LENGTH_SHORT).show();
                     return;

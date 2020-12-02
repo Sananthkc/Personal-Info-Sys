@@ -1,11 +1,12 @@
 package com.asd.personalinformationsystem;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "note_table")
-public class Note {
-
+@Entity()
+public class User {
+    @NonNull
     @PrimaryKey
     private String Phone;
 
@@ -15,7 +16,7 @@ public class Note {
 
     private String Occupation;
 
-    public Note(String phone, String name, String email, String occupation) {
+    public User(String phone, String name, String email, String occupation) {
         Phone = phone;
         Name = name;
         Email = email;

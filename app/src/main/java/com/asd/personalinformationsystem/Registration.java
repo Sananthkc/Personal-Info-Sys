@@ -2,6 +2,7 @@ package com.asd.personalinformationsystem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -42,6 +43,7 @@ public class Registration extends AppCompatActivity {
     DatabaseReference mDatabase;
     String userID;
     ProgressBar progressBar;
+    private NoteViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +54,7 @@ public class Registration extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         progressBar = findViewById(R.id.progressBar);
 
-
+        viewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(NoteViewModel.class);
 
 
         regButton.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +70,9 @@ public class Registration extends AppCompatActivity {
                 String email = userEmail.getText().toString();
                 String phone = userPhone.getText().toString();
                 String occ = userOccupation.getText().toString();
+
+                //TODO: Add the user details to User table
+                //viewModel.insert(new User());
 
                 UserHelperClass helperClass = new UserHelperClass(name, id, email, phone, occ);
                 mDatabase.child(phone).setValue(helperClass);
