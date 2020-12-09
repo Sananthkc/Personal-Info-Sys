@@ -33,11 +33,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdminHomeActivity extends AppCompatActivity {
-    DatabaseReference mref;
+
     ConstraintLayout lay;
     private TextView txtFullName, txtEmail, txtPhone, txtOccupation;
     private Button  btn_search,btnLogout;
-    private EditText editTxtName;
+    private EditText editTxtPhone;
     private NoteViewModel viewModel;
 
 
@@ -47,6 +47,7 @@ public class AdminHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
+        editTxtPhone = findViewById(R.id.edit_txt_phone);
 
         viewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(NoteViewModel.class);
 

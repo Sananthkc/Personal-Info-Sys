@@ -71,6 +71,8 @@ public class Registration extends AppCompatActivity {
                 String phone = userPhone.getText().toString();
                 String occ = userOccupation.getText().toString();
 
+                // name, email, phone, occ are the variables which have values
+
                 //TODO: Add the user details to User table
                 //viewModel.insert(new User());
 

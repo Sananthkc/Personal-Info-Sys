@@ -1,5 +1,6 @@
 package com.asd.personalinformationsystem;
 
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,34 +13,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHolder> {
-    private List<Note> notes = new ArrayList<>();
+    private  List<User> notes = new ArrayList<>();
+
 
     @NonNull
     @Override
     public NoteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
+        View itemview = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.note_item, parent, false);
-        return new NoteHolder(itemView);
+        return new NoteHolder(itemview);
     }
 
     @Override
     public void onBindViewHolder(@NonNull NoteHolder holder, int position) {
-        Note currentNote = notes.get(position);
+        User currentNote = notes.get(position);
         holder.textViewTitle.setText(currentNote.getName());
         holder.textViewDescription.setText(currentNote.getEmail());
         holder.textViewPhone.setText(String.valueOf(currentNote.getPhone()));
-        holder.textViewOcc.setText(String.valueOf(currentNote.getOccupation()));
+        holder.textViewOcc.setText(currentNote.getOccupation());
 
 
     }
 
     @Override
     public int getItemCount() {
-
         return notes.size();
     }
 
-    public void setNotes(List<Note> notes) {
+    public void setNotes(List<User> notes) {
         this.notes = notes;
         notifyDataSetChanged();
     }
