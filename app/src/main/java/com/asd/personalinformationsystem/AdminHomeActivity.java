@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -39,7 +42,7 @@ public class AdminHomeActivity extends AppCompatActivity {
     private Button  btn_search,btnLogout;
     private EditText editTxtPhone;
     private NoteViewModel viewModel;
-
+    private RecyclerView recyclerView;
 
 
 
@@ -48,16 +51,33 @@ public class AdminHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
         editTxtPhone = findViewById(R.id.edit_txt_phone);
+        btn_search = findViewById(R.id.btn_search);
+        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        final NoteAdapter adapter = new NoteAdapter();
+        recyclerView.setAdapter(adapter);
 
         viewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(NoteViewModel.class);
 
-        //TODO: After getting the phone number from the ADMIN search for the user
-//        viewModel.getAllUsers(phoneNumber).observe(this, new Observer<List<User>>() {
-//            @Override
-//            public void onChanged(List<User> users) {
-//
-//            }
-//        });
-
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String phoneNumber = editTxtPhone.getText().toString();
+                //TODO: After getting the phone number from the ADMIN search for the user
+                viewModel.getAllUsers(phoneNumber).observe(this, new Observer<List<User>>() {
+                    @Override
+                    public void onChanged(List<User> users) {
+                        if(users.size()==0) {
+                            recyclerView.setVisibility(View.GONE);
+                            Toast.makeText(AdminHomeActivity.this, "No data found!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            recyclerView.setVisibility(View.VISIBLE);
+                            adapter.setNotes(users);
+                        }
+                    }
+                });
+            }
+        });
     }
 }
