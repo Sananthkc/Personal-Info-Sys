@@ -74,7 +74,7 @@ public class Registration extends AppCompatActivity {
                 // name, email, phone, occ are the variables which have values
 
                 //TODO: Add the user details to User table
-                //viewModel.insert(new User());
+                viewModel.insert(new User(phone, name, email, occ));
 
                 UserHelperClass helperClass = new UserHelperClass(name, id, email, phone, occ);
                 mDatabase.child(phone).setValue(helperClass);
