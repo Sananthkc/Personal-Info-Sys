@@ -2,16 +2,21 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginEnd="8dp"
     android:layout_marginStart="8dp"
+    app:cardCornerRadius="15dp"
+    app:layout_constraintCircleRadius="15dp"
     android:layout_marginTop="8dp">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/cdv"
         android:padding="8dp">
 
         <TextView
+            android:layout_marginTop="10dp"
             android:id="@+id/text_view_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -19,6 +24,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="Title"
+            android:textColor="#FFFFFF"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         <TextView
             android:id="@+id/text_view_description"
@@ -26,6 +32,7 @@
             android:layout_height="wrap_content"
             android:textSize="17dp"
             android:layout_below="@id/text_view_title"
+            android:textColor="#FFFFFF"
             android:layout_marginTop="20dp"
             android:text="Description" />
         <TextView
@@ -33,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:textColor="#FFFFFF"
             android:textSize="17dp"
             android:text="phone"
             android:layout_below="@+id/text_view_description"
@@ -42,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:textColor="#FFFFFF"
             android:textSize="17dp"
             android:text="Occupation"
             android:layout_below="@+id/text_view_phone"

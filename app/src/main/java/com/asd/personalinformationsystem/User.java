@@ -16,6 +16,10 @@ public class User {
 
     private String Occupation;
 
+    public User() {
+
+    }
+
     public User(String phone, String name, String email, String occupation) {
         Phone = phone;
         Name = name;
@@ -23,7 +27,7 @@ public class User {
         Occupation = occupation;
     }
 
-    public String getPhone() {
+ /*   public String getPhone() {
         return Phone;
     }
 
@@ -37,5 +41,39 @@ public class User {
 
     public String getOccupation() {
         return Occupation;
+    }
+    */
+
+    @NonNull
+    public String getPhone() {
+        return Phone;
+    }
+
+    public void setPhone(@NonNull String phone) {
+        Phone = phone;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public String getOccupation() {
+        return Occupation;
+    }
+
+    public void setOccupation(String occupation) {
+        Occupation = occupation;
     }
 }

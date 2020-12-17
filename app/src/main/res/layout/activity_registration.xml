@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bglgn"
+    android:background="@drawable/lgv1"
     android:orientation="vertical"
     tools:context=".Registration">
 
@@ -16,8 +16,10 @@
         android:layout_marginTop="120sp"
         android:text="Personal Information System"
         android:textAlignment="center"
-        android:textColor="#FFFCFC"
-        android:textSize="25sp" />
+        android:textColor="#D6BB93"
+
+        android:textSize="25sp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/textView4"
@@ -33,9 +35,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30sp"
-        android:layout_marginTop="80sp"
+        android:layout_marginTop="130sp"
         android:ems="10"
         android:hint="Enter your Fulllname"
+        android:textColor="#FFFFFF"
         android:textColorHint="#F5F4F8"
         android:inputType="textPersonName" />
 
@@ -46,6 +49,7 @@
         android:layout_marginHorizontal="30sp"
         android:ems="10"
         android:hint="Enter Email"
+        android:textColor="#FFFFFF"
         android:textColorHint="#F5F4F8"
         android:inputType="textEmailAddress" />
 
@@ -56,6 +60,7 @@
         android:layout_marginHorizontal="30sp"
         android:ems="10"
         android:hint="Enter Password"
+        android:textColor="#FFFFFF"
         android:textColorHint="#F5F4F8"
         android:inputType="textPassword" />
 
@@ -66,6 +71,7 @@
         android:layout_marginHorizontal="30sp"
         android:ems="10"
         android:hint="Enter Mobile number"
+        android:textColor="#FFFFFF"
         android:textColorHint="#F5F4F8"
         android:inputType="phone" />
     <EditText
@@ -75,6 +81,7 @@
         android:layout_marginHorizontal="30sp"
         android:ems="10"
         android:hint="Occupation and Details"
+        android:textColor="#FFFFFF"
         android:textColorHint="#F5F4F8"
 
         />
@@ -95,7 +102,7 @@
         android:layout_height="wrap_content"
         android:text="Already have an account"
         android:textAlignment="center"
-        android:textColor="#000000" />
+        android:textColor="#FFFFFF" />
 
     <ProgressBar
         android:id="@+id/progressBar"

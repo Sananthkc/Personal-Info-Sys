@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,10 +52,20 @@ public class AdminHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
+        btnLogout = findViewById(R.id.btn_logout);
         editTxtPhone = findViewById(R.id.edit_txt_phone);
         btn_search = findViewById(R.id.btn_search);
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(AdminHomeActivity.this, MainActivity.class));
+                finish();
+            }
+        });
 
         final NoteAdapter adapter = new NoteAdapter();
         recyclerView.setAdapter(adapter);
@@ -65,7 +77,7 @@ public class AdminHomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String phoneNumber = editTxtPhone.getText().toString();
                 //TODO: After getting the phone number from the ADMIN search for the user
-                viewModel.getAllUsers(phoneNumber).observe(this, new Observer<List<User>>() {
+                viewModel.getAllUsers(phoneNumber).observe(AdminHomeActivity.this, new Observer<List<User>>() {
                     @Override
                     public void onChanged(List<User> users) {
                         if(users.size()==0) {
@@ -80,4 +92,5 @@ public class AdminHomeActivity extends AppCompatActivity {
             }
         });
     }
+
 }

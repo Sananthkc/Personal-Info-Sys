@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/adv"
     tools:context=".AdminHomeActivity">
 
    <LinearLayout
@@ -15,11 +16,12 @@
            android:id="@+id/textView2"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:layout_marginTop="32dp"
+           android:layout_marginTop="40dp"
            android:text="Welcome ADMIN"
-           android:textColor="@android:color/black"
+           android:layout_gravity="center"
+           android:textColor="#F4F4F4"
            android:textSize="24sp"
-           android:textStyle="bold|italic"
+           android:textStyle="bold"
            app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintTop_toTopOf="parent" />
@@ -31,6 +33,8 @@
            android:layout_marginTop="32dp"
            android:layout_marginStart="16dp"
            android:layout_marginEnd="16dp"
+           android:textColorHint="@color/design_default_color_on_primary"
+           android:textColor="#FFFFFF"
            android:hint="Enter Phone no"
            app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintStart_toStartOf="parent"
@@ -42,8 +46,10 @@
            android:layout_width="100dp"
            android:layout_height="wrap_content"
            android:layout_marginTop="16dp"
-           android:layout_marginStart="16dp"
            android:text="Search"
+           android:background="@drawable/buttonlogin"
+           android:backgroundTintMode="add"
+           android:layout_gravity="center"
            app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintTop_toBottomOf="@+id/edit_txt_name" />
@@ -51,7 +57,7 @@
        <androidx.recyclerview.widget.RecyclerView
            android:id="@+id/recycler_view"
            android:layout_width="match_parent"
-           android:layout_height="match_parent"
+           android:layout_height="wrap_content"
            android:visibility="gone"
            tools:listitem="@layout/note_item" />
 
@@ -63,6 +69,9 @@
            android:layout_height="wrap_content"
            android:layout_marginTop="228dp"
            android:text="Logout"
+           android:background="@drawable/buttonlogin"
+           android:backgroundTintMode="add"
+           android:layout_gravity="center"
            app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintHorizontal_bias="0.498"
            app:layout_constraintStart_toStartOf="parent"

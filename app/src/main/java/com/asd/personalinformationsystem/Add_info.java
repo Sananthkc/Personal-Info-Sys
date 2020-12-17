@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -37,7 +38,8 @@ import java.util.Map;
 public class Add_info extends AppCompatActivity {
 
     public static final String TAG = "TAG";
-    EditText profileFullName,profileEmail,profilePhone,profileOccupation;
+    EditText profileFullName,profileEmail,profileOccupation;
+    TextView profilePhone;
     ImageView profileImageView;
     Button saveBtn;
     FirebaseAuth fAuth;
@@ -45,8 +47,7 @@ public class Add_info extends AppCompatActivity {
     FirebaseUser user;
    // FirebaseDatabase rootNode;
     StorageReference storageReference;
-   // DatabaseReference matabade;
-  //  DatabaseReference mDatabase;
+
     private NoteViewModel viewModel;
 
     @Override
@@ -114,7 +115,12 @@ public class Add_info extends AppCompatActivity {
                 //TODO: Update the user info in the User table
                 //Get the details regarding the user including the primary key (phone number) and create an instance of User class
                 //This primary key (phone number) is used to check for the entry to be updated
-                //viewModel.update(new User());
+
+                String name1 = profileFullName.getText().toString();
+                String email1 = profileEmail.getText().toString();
+                String phone1 = profilePhone.getText().toString();
+                String occ1 = profileOccupation.getText().toString();
+                viewModel.update(new User(phone1, name1, email1, occ1));
 
                 if(profileFullName.getText().toString().isEmpty() || profileEmail.getText().toString().isEmpty() || profilePhone.getText().toString().isEmpty()){
                     Toast.makeText(Add_info.this, "One or Many fields are empty.", Toast.LENGTH_SHORT).show();
