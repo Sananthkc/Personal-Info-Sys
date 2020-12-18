@@ -10,7 +10,7 @@ import java.util.List;
 
 public class NoteViewModel extends AndroidViewModel {
     private NoteRepository repository;
-    private LiveData<List<User>> allUsers;
+    private LiveData<List<User>> users;
 
     public NoteViewModel(@NonNull Application application) {
         super(application);
@@ -25,9 +25,12 @@ public class NoteViewModel extends AndroidViewModel {
         repository.update(user);
     }
 
-    public LiveData<List<User>> getAllUsers(String phone) {
-        allUsers = repository.getAllUsers(phone);
-        return allUsers;
+    public void delete(User user) {
+        repository.delete(user);
     }
 
+    public LiveData<List<User>> getUsers() {
+        users = repository.getUsers();
+        return users;
+    }
 }

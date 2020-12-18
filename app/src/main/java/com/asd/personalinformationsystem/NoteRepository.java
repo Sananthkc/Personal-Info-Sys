@@ -10,11 +10,13 @@ import java.util.List;
 public class NoteRepository {
 
     private NoteDao noteDao;
-    private LiveData<List<User>> allUsers;
+    private LiveData<List<User>> users;
+    private List<User> allUsers;
 
     public NoteRepository(Application application){
         NoteDatabase database = NoteDatabase.getInstance(application);
         noteDao = database.noteDao();
+        users = noteDao.getUsers();
     }
 
     public  void  insert(User user){
@@ -26,7 +28,15 @@ public class NoteRepository {
         new UpdateNoteAsyncTask(noteDao).execute(user);
     }
 
-    public LiveData<List<User>> getAllUsers(String phone) {
+    public void delete(User user) {
+        new DeleteNoteAsyncTask(noteDao).execute(user);
+    }
+
+    public LiveData<List<User>> getUsers() {
+        return users;
+    }
+
+    public List<User> getAllUsers(String phone) {
         allUsers = noteDao.getAllUsers(phone);
         return allUsers;
     }
@@ -57,5 +67,17 @@ public class NoteRepository {
         }
     }
 
+    private static class DeleteNoteAsyncTask extends AsyncTask<User, Void, Void> {
+        private NoteDao noteDao;
 
+        private DeleteNoteAsyncTask(NoteDao noteDao) {
+            this.noteDao = noteDao;
+        }
+
+        @Override
+        protected Void doInBackground(User... users) {
+            noteDao.delete(users[0]);
+            return null;
+        }
+    }
 }

@@ -8,7 +8,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.AsyncQueryHandler;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,9 +43,10 @@ public class AdminHomeActivity extends AppCompatActivity {
 
     ConstraintLayout lay;
     private TextView txtFullName, txtEmail, txtPhone, txtOccupation;
-    private Button  btn_search,btnLogout;
+    private Button  btn_search,btnLogout, btnDelete, btnView;
     private EditText editTxtPhone;
     private NoteViewModel viewModel;
+    private NoteRepository repository;
     private RecyclerView recyclerView;
 
 
@@ -56,6 +59,8 @@ public class AdminHomeActivity extends AppCompatActivity {
         editTxtPhone = findViewById(R.id.edit_txt_phone);
         btn_search = findViewById(R.id.btn_search);
         recyclerView = findViewById(R.id.recycler_view);
+        btnDelete = findViewById(R.id.btn_del);
+        btnView = findViewById(R.id.btn_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
@@ -71,18 +76,79 @@ public class AdminHomeActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         viewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(NoteViewModel.class);
+        repository = new NoteRepository(getApplication());
 
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String phoneNumber = editTxtPhone.getText().toString();
+                final String phoneNumber = editTxtPhone.getText().toString();
                 //TODO: After getting the phone number from the ADMIN search for the user
-                viewModel.getAllUsers(phoneNumber).observe(AdminHomeActivity.this, new Observer<List<User>>() {
+                AsyncTask.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        final List<User> users = repository.getAllUsers(phoneNumber);
+                        if(users.size()==0) {
+                            AdminHomeActivity.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    recyclerView.setVisibility(View.GONE);
+                                    Toast.makeText(AdminHomeActivity.this, "No data found!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        } else {
+                            AdminHomeActivity.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    recyclerView.setVisibility(View.VISIBLE);
+                                    adapter.setNotes(users);
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final String phoneNumber = editTxtPhone.getText().toString();
+                AsyncTask.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        final List<User> users = repository.getAllUsers(phoneNumber);
+                        if(users.size()==0) {
+                            AdminHomeActivity.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    recyclerView.setVisibility(View.GONE);
+                                    Toast.makeText(AdminHomeActivity.this, "No user found!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        } else {
+                            viewModel.delete(users.get(0));
+                            AdminHomeActivity.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    recyclerView.setVisibility(View.GONE);
+                                    Toast.makeText(AdminHomeActivity.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        });
+
+        btnView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewModel.getUsers().observe(AdminHomeActivity.this, new Observer<List<User>>() {
                     @Override
                     public void onChanged(List<User> users) {
                         if(users.size()==0) {
                             recyclerView.setVisibility(View.GONE);
-                            Toast.makeText(AdminHomeActivity.this, "No data found!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AdminHomeActivity.this, "No users available", Toast.LENGTH_SHORT).show();
                         } else {
                             recyclerView.setVisibility(View.VISIBLE);
                             adapter.setNotes(users);

@@ -18,8 +18,14 @@ public interface NoteDao {
     @Update
     void update(User user);
 
+    @Delete
+    void delete(User user);
+
+    @Query("SELECT * FROM User")
+    LiveData<List<User>> getUsers();
+
     @Query("SELECT * FROM User where phone = :phone")
-    LiveData<List<User>> getAllUsers(String phone);
+    List<User> getAllUsers(String phone);
 
 
 }
