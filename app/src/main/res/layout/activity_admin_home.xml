@@ -41,18 +41,58 @@
            app:layout_constraintTop_toBottomOf="@+id/textView2"
            />
 
-       <Button
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:layout_gravity="center">
+
+
+           <Button
            android:id="@+id/btn_search"
            android:layout_width="100dp"
            android:layout_height="wrap_content"
+           android:layout_gravity="center"
            android:layout_marginTop="16dp"
-           android:text="Search"
+               android:layout_marginStart="20dp"
            android:background="@drawable/buttonlogin"
            android:backgroundTintMode="add"
-           android:layout_gravity="center"
+           android:text="Search"
            app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintTop_toBottomOf="@+id/edit_txt_name" />
+
+           <Button
+               android:id="@+id/btn_del"
+               android:layout_width="100dp"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:layout_marginTop="16dp"
+               android:background="@drawable/buttonlogin"
+               android:layout_marginStart="20dp"
+               android:backgroundTintMode="add"
+               android:text="DELETE"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/edit_txt_name" />
+
+           <Button
+               android:id="@+id/btn_view"
+               android:layout_width="100dp"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:layout_marginTop="16dp"
+               android:background="@drawable/buttonlogin"
+               android:layout_marginStart="20dp"
+               android:backgroundTintMode="add"
+               android:text="VIEW ALL"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/edit_txt_name" />
+
+       </LinearLayout>
+
 
        <androidx.recyclerview.widget.RecyclerView
            android:id="@+id/recycler_view"
